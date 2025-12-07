@@ -1,145 +1,219 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Lost&Found</title>
-  <link rel="stylesheet" href="styles.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600&display=swap" rel="stylesheet">
-</head>
-<body>
-  <div class="page">
-    <header class="shell">
-      <div class="brand">
-        <span class="mark">Lf</span>
-        <div class="brand-text">
-          <span class="name">Lost&Found</span>
-          <span class="eyebrow">Post, find, return.</span>
-        </div>
-      </div>
-      <div class="header-controls">
-        <div class="search">
-          <input id="searchInput" type="search" placeholder="Search by title or location" />
-          <svg viewBox="0 0 24 24" class="icon" aria-hidden="true">
-            <circle cx="11" cy="11" r="6" fill="none" stroke="currentColor" stroke-width="2" />
-            <line x1="16.5" y1="16.5" x2="21" y2="21" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
-          </svg>
-        </div>
-        <button id="themeToggle" class="toggle" aria-label="Toggle dark mode">
-          <span class="toggle-thumb">
-            <svg class="toggle-icon" viewBox="0 0 24 24" aria-hidden="true"></svg>
-          </span>
-        </button>
-        <button id="addItemBtn" class="btn primary">+ Add item</button>
-      </div>
-    </header>
-
-    <main class="main">
-      <section class="intro-card">
-        <div>
-          <h1>Pin it. Return it.</h1>
-          <p class="lede">Post a quick note with a location. Let the owner claim it.</p>
-        </div>
-        <div class="stats">
-          <div class="stat">
-            <span class="stat-number" id="statTotal">0</span>
-            <span class="stat-label">Items</span>
-          </div>
-          <div class="stat">
-            <span class="stat-number" id="statOpen">0</span>
-            <span class="stat-label">Open</span>
-          </div>
-          <div class="stat">
-            <span class="stat-number" id="statClaimed">0</span>
-            <span class="stat-label">Claimed</span>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lost&Found</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class="page">
+      <header class="shell">
+        <div class="brand">
+          <span class="mark">Lf</span>
+          <div class="brand-text">
+            <span class="name">Lost&Found</span>
+            <span class="eyebrow">Post, find, return.</span>
           </div>
         </div>
-      </section>
-
-      <section id="masonry" class="masonry" aria-live="polite"></section>
-    </main>
-  </div>
-
-  <!-- Add Item Modal -->
-  <div id="drawer" class="drawer" role="dialog" aria-modal="true">
-    <div class="drawer-card">
-      <div class="drawer-header">
-        <h2>Add item</h2>
-        <button class="icon-btn" id="closeDrawer" aria-label="Close">
-          <svg viewBox="0 0 24 24" aria-hidden="true">
-            <line x1="5" y1="5" x2="19" y2="19" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-            <line x1="19" y1="5" x2="5" y2="19" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-          </svg>
-        </button>
-      </div>
-      <form id="addItemForm" class="form">
-        <label>
-          Item title
-          <input required name="title" placeholder="Black backpack with patches" />
-        </label>
-        <label>
-          Location found
-          <input required name="location" placeholder="Library, 2nd floor" />
-        </label>
-        <label>
-          Image URL (optional)
-          <input name="image" placeholder="https://… (jpeg/png/webp)" />
-        </label>
-        <label>
-          Short description
-          <textarea name="description" rows="3" placeholder="Notable details…"></textarea>
-        </label>
-        <label>
-          Contact / Claim note
-          <input name="contact" placeholder="DM @you or email" />
-        </label>
-        <div class="form-actions">
-          <button type="button" class="btn ghost" id="cancelForm">Cancel</button>
-          <button type="submit" class="btn primary">Add item</button>
+        <div class="header-controls">
+          <div class="search">
+            <input
+              id="searchInput"
+              type="search"
+              placeholder="Search by title or location"
+            />
+            <svg viewBox="0 0 24 24" class="icon" aria-hidden="true">
+              <circle
+                cx="11"
+                cy="11"
+                r="6"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              />
+              <line
+                x1="16.5"
+                y1="16.5"
+                x2="21"
+                y2="21"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+              />
+            </svg>
+          </div>
+          <button id="themeToggle" class="toggle" aria-label="Toggle dark mode">
+            <span class="toggle-thumb">
+              <svg
+                class="toggle-icon"
+                viewBox="0 0 24 24"
+                aria-hidden="true"
+              ></svg>
+            </span>
+          </button>
+          <button id="addItemBtn" class="btn primary">+ Add item</button>
         </div>
-      </form>
+      </header>
+
+      <main class="main">
+        <section class="intro-card reveal">
+          <div>
+            <h1>Pin it. Return it.</h1>
+            <p class="lede">
+              Post a quick note with a location. Let the owner claim it.
+            </p>
+          </div>
+          <div class="stats">
+            <div class="stat reveal">
+              <span class="stat-number" id="statTotal">0</span>
+              <span class="stat-label">Items</span>
+            </div>
+            <div class="stat reveal">
+              <span class="stat-number" id="statOpen">0</span>
+              <span class="stat-label">Open</span>
+            </div>
+            <div class="stat reveal">
+              <span class="stat-number" id="statClaimed">0</span>
+              <span class="stat-label">Claimed</span>
+            </div>
+          </div>
+        </section>
+
+        <section id="masonry" class="masonry" aria-live="polite"></section>
+      </main>
     </div>
-  </div>
 
-  <!-- Delete Confirm Modal -->
-  <div id="confirmModal" class="confirm" role="dialog" aria-modal="true" aria-labelledby="confirmTitle">
-    <div class="confirm-card">
-      <h3 id="confirmTitle">Delete this note?</h3>
-      <p class="confirm-text">This will remove the item from the board.</p>
-      <div class="confirm-actions">
-        <button id="confirmCancel" class="btn ghost">Cancel</button>
-        <button id="confirmDelete" class="btn danger">Delete</button>
+    <!-- Add Item Modal -->
+    <div id="drawer" class="drawer" role="dialog" aria-modal="true">
+      <div class="drawer-card">
+        <div class="drawer-header">
+          <h2>Add item</h2>
+          <button class="icon-btn" id="closeDrawer" aria-label="Close">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <line
+                x1="5"
+                y1="5"
+                x2="19"
+                y2="19"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+              />
+              <line
+                x1="19"
+                y1="5"
+                x2="5"
+                y2="19"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+              />
+            </svg>
+          </button>
+        </div>
+        <form id="addItemForm" class="form">
+          <label>
+            Item title
+            <input
+              required
+              name="title"
+              placeholder="Black backpack with patches"
+            />
+          </label>
+          <label>
+            Location found
+            <input required name="location" placeholder="Library, 2nd floor" />
+          </label>
+          <label>
+            Image URL (optional)
+            <input name="image" placeholder="https://… (jpeg/png/webp)" />
+          </label>
+          <label>
+            Short description
+            <textarea
+              name="description"
+              rows="3"
+              placeholder="Notable details…"
+            ></textarea>
+          </label>
+          <label>
+            Contact / Claim note
+            <input name="contact" placeholder="DM @you or email" />
+          </label>
+          <div class="form-actions">
+            <button type="button" class="btn ghost" id="cancelForm">
+              Cancel
+            </button>
+            <button type="submit" class="btn primary">Add item</button>
+          </div>
+        </form>
       </div>
     </div>
-  </div>
 
-  <template id="cardTemplate">
-    <article class="card">
-      <span class="pin"></span>
-      <div class="card-media">
-        <div class="media-fallback">No image</div>
-        <img class="media-img" alt="" loading="lazy" />
-      </div>
-      <div class="card-body">
-        <div class="card-top">
-          <div class="meta">
-            <p class="location"></p>
-            <h3 class="card-title"></h3>
-          </div>
-          <span class="badge status"></span>
-        </div>
-        <p class="description"></p>
-        <div class="card-footer">
-          <div class="contact"></div>
-          <div class="actions">
-            <button class="chip ghost claim-btn"></button>
-            <button class="chip danger delete-btn" aria-label="Delete">Delete</button>
-          </div>
+    <!-- Delete Confirm Modal -->
+    <div
+      id="confirmModal"
+      class="confirm"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="confirmTitle"
+    >
+      <div class="confirm-card">
+        <h3 id="confirmTitle">Delete this note?</h3>
+        <p class="confirm-text">This will remove the item from the board.</p>
+        <div class="confirm-actions">
+          <button id="confirmCancel" class="btn ghost">Cancel</button>
+          <button id="confirmDelete" class="btn danger">Delete</button>
         </div>
       </div>
-    </article>
-  </template>
+    </div>
 
-  <script src="app.js"></script>
-</body>
+    <template id="cardTemplate">
+      <article class="card">
+        <span class="pin"></span>
+        <div class="card-media">
+          <div class="media-fallback">No image</div>
+          <img class="media-img" alt="" loading="lazy" />
+        </div>
+        <div class="card-body">
+          <div class="card-top">
+            <div class="meta">
+              <p class="location"></p>
+              <h3 class="card-title"></h3>
+            </div>
+            <span class="badge status"></span>
+          </div>
+          <p class="description"></p>
+          <div class="card-footer">
+            <div class="contact"></div>
+            <div class="actions">
+              <button class="chip ghost claim-btn"></button>
+              <button class="chip danger delete-btn" aria-label="Delete">
+                Delete
+              </button>
+            </div>
+          </div>
+        </div>
+      </article>
+    </template>
+
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"
+      integrity="sha512-3KpTjZZ8SeI3mLkGZKtj9u2kQyV1Z6yPyIuP89xDSHLVYDBlnJrped1IovnHgwlHGawEq+y3OCAXoTr4a9L5xg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"
+      integrity="sha512-u8ZSaoXqswNy+tPV/e0c+mk1U9MGaI8BsopZHYEGQGvXHl5abZEWSIk2s9InBezVPSv+Xsg6grkQHIiph0QGlA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+    <script src="app.js"></script>
+  </body>
 </html>
