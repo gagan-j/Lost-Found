@@ -31,8 +31,7 @@ const seed = [
     location: "Library, 2nd floor",
     description: "Silver zipper, laptop inside, bottle pocket.",
     contact: "DM @campus-help",
-    image:
-      "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=900&q=80",
+    image: "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=900&q=80",
     claimed: false,
     tone: tones[0],
   },
@@ -42,8 +41,7 @@ const seed = [
     location: "Café patio",
     description: "Tiny scratch on case; left near the plants.",
     contact: "Text 555-321-8890",
-    image:
-      "https://images.unsplash.com/photo-1588423771073-b8903fbb85b5?auto=format&fit=crop&w=900&q=80",
+    image: "https://images.unsplash.com/photo-1588423771073-b8903fbb85b5?auto=format&fit=crop&w=900&q=80",
     claimed: true,
     tone: tones[1],
   },
@@ -53,8 +51,7 @@ const seed = [
     location: "Gym locker room",
     description: "Screw top, small dent near base.",
     contact: "Front desk - ask for Maya",
-    image:
-      "https://images.unsplash.com/photo-1597926575434-3b6a7b6b0a6b?auto=format&fit=crop&w=900&q=80",
+    image: "https://images.unsplash.com/photo-1597926575434-3b6a7b6b0a6b?auto=format&fit=crop&w=900&q=80",
     claimed: false,
     tone: tones[2],
   },
@@ -111,12 +108,6 @@ function nextTone() {
   return tones[idx];
 }
 
-/* Random small rotation for sticky vibe */
-function randomTilt() {
-  const n = (Math.random() * 4 - 2).toFixed(2); // -2deg to 2deg
-  return `${n}deg`;
-}
-
 /* Confirm modal helpers */
 function openConfirm(id) {
   pendingDeleteId = id;
@@ -144,7 +135,6 @@ function renderCard(item) {
   node.classList.add(item.tone || tones[0]);
   node.classList.toggle("is-claimed", item.claimed);
   node.classList.toggle("is-unclaimed", !item.claimed);
-  node.style.setProperty("--tilt", randomTilt());
 
   const titleEl = node.querySelector(".card-title");
   const badge = node.querySelector(".badge.status");
@@ -265,14 +255,10 @@ searchInput.addEventListener("input", renderList);
 addItemBtn.addEventListener("click", openDrawer);
 closeDrawer.addEventListener("click", closeDrawerUI);
 cancelForm.addEventListener("click", closeDrawerUI);
-drawer.addEventListener("click", (e) => {
-  if (e.target === drawer) closeDrawerUI();
-});
+drawer.addEventListener("click", (e) => { if (e.target === drawer) closeDrawerUI(); });
 
 themeToggle.addEventListener("click", () => {
-  const next = document.documentElement.classList.contains("dark")
-    ? "light"
-    : "dark";
+  const next = document.documentElement.classList.contains("dark") ? "light" : "dark";
   applyTheme(next);
 });
 

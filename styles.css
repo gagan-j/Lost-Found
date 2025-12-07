@@ -1,7 +1,7 @@
 :root {
   color-scheme: light;
   --bg-image: url("https://images.unsplash.com/photo-1599437649349-968d030f6a07?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");
- --surface: #fbfaf5;   /* warm off-white */
+  --surface: #fbfaf5;   /* warm off-white */
   --surface-2: #f2f0eb; /* slightly deeper warm layer */
   --border: #e5e1d8;
   --text: #0f1115;
@@ -18,13 +18,11 @@
 
 :root.dark {
   color-scheme: dark;
-   --surface: #181b20;
+  --surface: #181b20;
   --surface-2: #1f232a;
   --border: #2f333b;
   --text: #edf0f5;
   --subtle: #b3b8c0;
-
-  --border: #2d333d;
   --accent: #f1f1f3;
   --accent-2: #cfcfd4;
   --danger: #d97a7a;
@@ -145,28 +143,24 @@ body {
   transition: transform 150ms ease, border 150ms ease, box-shadow 150ms ease;
   position: relative;
 }
-.card:hover { transform: translateY(-4px) rotate(var(--tilt)); border-color: rgba(0,0,0,0.05); }
-.card { transform: rotate(var(--tilt)); }
+.card:hover { transform: translateY(-4px); border-color: rgba(0,0,0,0.05); }
+/* No base rotation to avoid jitter */
 
-/* Neutral sticky tones (light) */
 .card.sticky-yellow { background: #f1f0ec; }
 .card.sticky-blue   { background: #f0f2f5; }
 .card.sticky-pink   { background: #f2f0f2; }
 .card.sticky-mint   { background: #eef2f1; }
 
-/* Neutral sticky tones (dark) */
 :root.dark .card.sticky-yellow { background: #2f302c; color: #f2f2ef; }
 :root.dark .card.sticky-blue   { background: #2c3036; color: #f0f2f7; }
 :root.dark .card.sticky-pink   { background: #312d31; color: #f3f0f4; }
 :root.dark .card.sticky-mint   { background: #2b312f; color: #eef3f1; }
 
-/* Ensure child text inherits readable color in dark */
 :root.dark .card .description,
 :root.dark .card .location,
 :root.dark .card .card-title,
 :root.dark .card .contact { color: inherit; }
 
-/* Subtle claimed/unclaimed */
 .card.is-claimed { box-shadow: 0 12px 30px -26px rgba(70, 74, 85, 0.35); border-color: rgba(90,95,110,0.25); }
 .card.is-unclaimed { box-shadow: 0 12px 30px -26px rgba(110, 130, 120, 0.25); border-color: rgba(120,140,130,0.25); }
 
@@ -176,9 +170,7 @@ body {
   border-radius: 50%; box-shadow: 0 2px 6px rgba(0,0,0,0.18); z-index: 2;
 }
 
-.card-media {
-  position: relative; width: 100%; background: var(--surface-2); aspect-ratio: 4 / 3; overflow: hidden;
-}
+.card-media { position: relative; width: 100%; background: var(--surface-2); aspect-ratio: 4 / 3; overflow: hidden; }
 .media-img { width: 100%; height: 100%; object-fit: cover; display: block; }
 .media-fallback { position: absolute; inset: 0; display: grid; place-items: center; color: var(--subtle); font-weight: 600; background: var(--surface-2); }
 
