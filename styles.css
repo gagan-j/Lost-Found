@@ -138,15 +138,24 @@ body {
 
 /* Sticky fridge vibe */
 .card {
-  break-inside: avoid; border-radius: var(--radius-lg);
-  margin: 0 0 14px; overflow: hidden;
-  background: var(--surface); border: 1px solid var(--border);
+  break-inside: avoid; 
+  border-radius: var(--radius-lg);
+  margin: 0 0 14px; 
+  overflow: hidden;
+  background: var(--surface); 
+  border: 1px solid var(--border);
   box-shadow: var(--shadow);
   transition: transform 150ms ease, border 150ms ease, box-shadow 150ms ease;
   position: relative;
+  transform: rotate(var(--tilt)); /* Move this BEFORE the hover rule */
+  will-change: transform; /* Hint to browser for GPU acceleration */
+  backface-visibility: hidden; /* Prevents flickering */
 }
-.card:hover { transform: translateY(-4px) rotate(var(--tilt)); border-color: rgba(0,0,0,0.05); }
-.card { transform: rotate(var(--tilt)); }
+
+.card:hover { 
+  transform: translateY(-4px) rotate(var(--tilt)); 
+  border-color: rgba(0,0,0,0.05); 
+}
 
 /* Neutral sticky tones (light) */
 .card.sticky-yellow { background: #f1f0ec; }
